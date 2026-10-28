@@ -20,6 +20,9 @@ set(pchs
     <cerrno>
     <fstream>
     <thread>
+    <limits>
+    <charconv>
+    <cstring>
     [["json.hpp"]]
     [["sqlite3.h"]]
     [["curl/curl.h"]]
@@ -39,6 +42,18 @@ elseif(LINUX)
         <unistd.h>
         <fcntl.h>
         <sys/stat.h>
+        <poll.h>
+        <signal.h>
+        <spawn.h>
+        <sys/file.h>
+        <sys/prctl.h>
+        <sys/resource.h>
+        <sys/stat.h>
+        <sys/syscall.h>
+        <sys/types.h>
+        <sys/wait.h>
+        <sys/xattr.h>
+        <unistd.h>
     )
 endif()
 
@@ -69,12 +84,17 @@ if(WIN32)
     )
 elseif(LINUX)
     target_link_libraries(kw_agent_backend PRIVATE
-        #ssl
-        #crypto
+        # ssl
+        # crypto
         #llhttp
         spdlog
         curl
         sqlite3
+        # ngtcp2_crypto_quictls
+        #ngtcp2
+        # nghttp3
+        # OpenSSL::SSL
+        # OpenSSL::Crypto
     )
 endif()
 

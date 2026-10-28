@@ -1,3 +1,4 @@
+#if defined(_WIN32)
 #include "json.hpp"
 #include "helpers/log.h"
 #include "helpers/function.h"
@@ -66,3 +67,6 @@ int main() {
 
   return 0;
 }
+#elif defined(__linux__)
+int main(){}
+#endif
